@@ -1,6 +1,7 @@
 package com.github.hronom.test.spring.security.configs;
 
-import com.github.hronom.test.spring.security.configs.custom.objects.CustomAuthenticationProvider;
+import com.github.hronom.test.spring.security.configs.custom.objects.CustomAuthenticationManager;
+import com.github.hronom.test.spring.security.components.CustomAuthenticationProvider;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -40,12 +41,17 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(new CustomAuthenticationProvider());
+        auth.authenticationProvider(customAuthenticationProvider());
+    }
+
+    @Bean
+    public CustomAuthenticationProvider customAuthenticationProvider() {
+        return new CustomAuthenticationProvider();
     }
 
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
+        return new CustomAuthenticationManager();
     }
 }

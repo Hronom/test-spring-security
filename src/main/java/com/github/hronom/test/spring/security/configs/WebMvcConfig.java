@@ -10,7 +10,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @Configuration
 @ComponentScan({
     "com.github.hronom.test.spring.security.controllers",
-    "com.github.hronom.test.spring.security.configs"
+    "com.github.hronom.test.spring.security.configs",
+    "com.github.hronom.test.spring.security.components"
 })
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Override

@@ -1,4 +1,6 @@
-package com.github.hronom.test.spring.security.configs.custom.objects;
+package com.github.hronom.test.spring.security.components;
+
+import com.github.hronom.test.spring.security.configs.custom.objects.CustomUser;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -9,10 +11,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
+@Component
 public class CustomAuthenticationProvider implements AuthenticationProvider {
     private Logger logger = LogManager.getLogger();
 
