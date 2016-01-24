@@ -1,7 +1,6 @@
 package com.github.hronom.test.spring.security.configs;
 
-import com.github.hronom.test.spring.security.configs.custom.objects.CustomAuthenticationManager;
-import com.github.hronom.test.spring.security.components.CustomAuthenticationProvider;
+import com.github.hronom.test.spring.security.configs.custom.objects.CustomAuthenticationProvider;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,11 +8,13 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @Configuration
+@EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
-public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -41,17 +42,12 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(customAuthenticationProvider());
-    }
-
-    @Bean
-    public CustomAuthenticationProvider customAuthenticationProvider() {
-        return new CustomAuthenticationProvider();
+        auth.authenticationProvider(new CustomAuthenticationProvider());
     }
 
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
-        return new CustomAuthenticationManager();
+        return super.authenticationManagerBean();
     }
 }

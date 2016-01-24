@@ -1,6 +1,4 @@
-package com.github.hronom.test.spring.security.components;
-
-import com.github.hronom.test.spring.security.configs.custom.objects.CustomUser;
+package com.github.hronom.test.spring.security.configs.custom.objects;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
